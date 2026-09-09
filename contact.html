@@ -10,55 +10,49 @@
 </head>
 <body data-page="contact">
 
-<section class="page-hero" style="padding-bottom:0">
+<section class="page-hero">
   <div class="wrap">
-    <div class="crumb"><a href="/">Home</a> · Contact</div>
+    <div class="crumb"><a href="/">Home</a> / Contact</div>
+    <div class="label-row on-dark"><span class="label">Get in touch</span></div>
+    <h1 class="display-l">Let's connect &amp; explore.</h1>
+    <p class="intro">Tell us the product, grade and quantity you need. Our team will respond with technical data sheets and samples.</p>
   </div>
 </section>
 
-<section style="padding-top:24px">
-  <div class="wrap">
-    <div class="reveal contact-info" style="max-width:860px;margin:0 auto">
+<section>
+  <div class="wrap split-2" style="align-items:start">
+    <div class="reveal contact-info">
       <div class="ci"><div class="k">Unit – I</div><div class="v">Sy No: 51/1, Mekanuru Village, Guduru Mandal, Tirupati District, Andhra Pradesh, India – 524410</div></div>
       <div class="ci"><div class="k">Unit – II</div><div class="v">Sy No: 62P &amp; 63P, Plot No.7, APIIC IP, Attivaram Village, Ozili Mandal, Tirupati District, Andhra Pradesh, India – 524421</div></div>
-      <div class="ci"><div class="k">Phone</div><div class="v"><a href="tel:+919791154650">+91 97911 54650</a> · <a href="tel:+917995111285">+91 79951 11285</a></div></div>
+      <div class="ci"><div class="k">Phone</div><div class="v"><a href="tel:+919791154650">+91 97911 54650</a><br/><a href="tel:+917995111285">+91 79951 11285</a></div></div>
       <div class="ci"><div class="k">Email</div><div class="v"><a href="mailto:info@biomedintl.com">info@biomedintl.com</a></div></div>
     </div>
-  </div>
-</section>
 
-<section style="padding-top:0">
-  <div class="wrap" style="max-width:640px;margin:0 auto">
-    <div class="reveal">
-      <span class="eyebrow">Let's connect &amp; explore</span>
-      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-.015em;margin:10px 0 12px">Enquire now.</h1>
-      <p class="intro" style="margin-bottom:28px">Tell us the product, grade and quantity you need. Our team will respond with technical data sheets and samples.</p>
-      <div class="form-card">
-        <form onsubmit="enquire(event)">
-          <div class="field-row">
-            <div class="field"><label>First Name</label><input required name="firstName" placeholder="First name"/></div>
-            <div class="field"><label>Last Name</label><input name="lastName" placeholder="Last name"/></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Email</label><input required type="email" name="email" placeholder="you@company.com"/></div>
-            <div class="field"><label>Phone</label><input required name="phone" placeholder="+91…"/></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Company</label><input name="company" placeholder="Company name"/></div>
-            <div class="field"><label>Location</label><input name="location" placeholder="City, Country"/></div>
-          </div>
-          <div class="field"><label>Product of interest</label>
-            <select name="product">
-              <option>Chondroitin Sulfate Sodium</option>
-              <option>Collagen</option>
-              <option>Other / General Enquiry</option>
-            </select>
-          </div>
-          <div class="field"><label>Message</label><textarea name="message" placeholder="Grade, specification, destination country, any other details…"></textarea></div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send enquiry</button>
-          <p class="form-note" id="formNote">Or reach us directly by phone or email above.</p>
-        </form>
-      </div>
+    <div class="reveal form-card">
+      <form onsubmit="enquire(event)">
+        <div class="field-row">
+          <div class="field"><label>First Name</label><input required name="firstName" placeholder="First name"/></div>
+          <div class="field"><label>Last Name</label><input name="lastName" placeholder="Last name"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Email</label><input required type="email" name="email" placeholder="you@company.com"/></div>
+          <div class="field"><label>Phone</label><input required name="phone" placeholder="+91…"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Company</label><input name="company" placeholder="Company name"/></div>
+          <div class="field"><label>Location</label><input name="location" placeholder="City, Country"/></div>
+        </div>
+        <div class="field"><label>Product of interest</label>
+          <select name="product">
+            <option>Chondroitin Sulfate Sodium</option>
+            <option>Collagen</option>
+            <option>Other / General Enquiry</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea name="message" placeholder="Grade, specification, destination country, any other details…"></textarea></div>
+        <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center">Send enquiry</button>
+        <p class="form-note" id="formNote">Or reach us directly by phone or email.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -69,7 +63,7 @@ function enquire(e){
   e.preventDefault();
   var f=e.target, n=document.getElementById('formNote');
   var body=encodeURIComponent('Name: '+f.firstName.value+' '+f.lastName.value+'\nCompany: '+f.company.value+'\nEmail: '+f.email.value+'\nPhone: '+f.phone.value+'\nLocation: '+f.location.value+'\nProduct: '+f.product.value+'\n\n'+f.message.value);
-  n.style.color='var(--teal-deep)';
+  n.style.color='var(--signal)';
   n.textContent='Thank you — opening your email app to send this enquiry to our team…';
   window.location.href='mailto:info@biomedintl.com?subject='+encodeURIComponent('Product enquiry — '+f.product.value)+'&body='+body;
 }

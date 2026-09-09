@@ -44,7 +44,12 @@ h1{font-family:var(--disp);font-weight:400;font-size:clamp(36px,5vw,60px);line-h
 .opt .go{margin:24px 26px 0;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--mono);font-size:12.5px;
   letter-spacing:.08em;text-transform:uppercase;padding:14px 20px;background:var(--ink);color:var(--paper);transition:.25s}
 .opt .go:hover{background:var(--signal);color:var(--ink)}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.colors{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+  border:1px solid var(--line);padding:38px;margin-bottom:80px;background:#fff}
+.colors h2{font-family:var(--disp);font-weight:400;font-size:30px;line-height:1.1;margin-bottom:12px}
+.colors p{font-size:15px;color:var(--ink2);max-width:64ch}
+.go-wide{margin:0;white-space:nowrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.colors{grid-template-columns:1fr;gap:26px;padding:28px}}
 @media(max-width:600px){.wrap{padding:0 20px}.top{padding:48px 0 34px}}
 </style>
 </head>
@@ -105,6 +110,15 @@ h1{font-family:var(--disp);font-weight:400;font-size:clamp(36px,5vw,60px);line-h
       </div>
       <a class="go" href="/preview/c/">View option C →</a>
     </div>
+  </div>
+
+  <div class="colors">
+    <div>
+      <span class="lbl">Colour</span>
+      <h2>Not sure about the dark palette? Try the colours live.</h2>
+      <p>Same layout, six palettes — switch between them instantly and see the whole page change. Our recommendation is deep teal: clinical enough for a pharma buyer, without disappearing into the sea of corporate blue.</p>
+    </div>
+    <a class="go go-wide" href="/preview/colors/">Open colour switcher →</a>
   </div>
 </div>
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Options — Biomed International</title>
+<link rel="icon" href="/assets/brand/logo.jpg" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Bodoni+Moda:opsz,wght@6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F5F0;--ink:#0A0F14;--ink2:#4A5C6B;--mute:#8A939C;--line:rgba(10,15,20,.14);--signal:#00A88E;
+  --disp:"Instrument Serif",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 32px}
+.top{padding:72px 0 44px;border-bottom:1px solid var(--line)}
+.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:18px;display:block}
+h1{font-family:var(--disp);font-weight:400;font-size:clamp(36px,5vw,60px);line-height:1.04;letter-spacing:-.02em;max-width:18ch}
+.top p{color:var(--ink2);max-width:64ch;margin-top:18px;font-size:16.5px}
+.note{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--mute);line-height:1.8;max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:56px 0 80px}
+.opt{background:var(--paper);padding:0 0 30px;transition:.3s;display:flex;flex-direction:column}
+.opt:hover{background:#fff}
+.sw{height:190px;position:relative;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.sw .t1{font-size:34px;line-height:1}
+.sw .t2{font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.a-sw{background:#0A0F14}
+.a-sw .t1{font-family:var(--disp);color:#F7F5F0}.a-sw .t1 em{color:#12D6B6}
+.a-sw .t2{font-family:var(--mono);color:#00A88E}
+.b-sw{background:#fff}
+.b-sw .t1{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-stretch:118%;letter-spacing:-.04em;color:#0C1116}
+.b-sw .t1 em{color:#1447E6;font-style:normal}
+.b-sw .t2{color:#1447E6;font-weight:700}
+.c-sw{background:#14120E}
+.c-sw .t1{font-family:"Bodoni Moda",Didot,serif;color:#EFE9DD}.c-sw .t1 em{color:#B9924F}
+.c-sw .t2{font-family:"Jost",sans-serif;color:#B9924F}
+.opt .in{padding:26px 26px 0;flex:1}
+.opt .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:12px}
+.opt h2{font-family:var(--disp);font-weight:400;font-size:29px;line-height:1.08;margin-bottom:12px}
+.opt p{font-size:14.5px;color:var(--ink2)}
+.opt ul{list-style:none;margin-top:16px}
+.opt li{font-size:13.5px;color:var(--ink2);padding-left:18px;position:relative;margin-bottom:8px}
+.opt li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--signal)}
+.opt .go{margin:24px 26px 0;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase;padding:14px 20px;background:var(--ink);color:var(--paper);transition:.25s}
+.opt .go:hover{background:var(--signal);color:var(--ink)}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{padding:0 20px}.top{padding:48px 0 34px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <span class="lbl">Biomed International · Website design</span>
+    <h1>Three directions. Same content, three different personalities.</h1>
+    <p>Open each one and flip between them using the bar at the bottom of the screen. Once you pick a direction, that one gets built out into the full site — every page, with your new copy and photographs.</p>
+    <div class="note">
+      Note — the words and photographs here are the current site's, used only as a placeholder so the three can be compared fairly. Copy revamp and new promoter / plant photos will replace all of it.
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="opt">
+      <div class="sw a-sw"><div class="t1">Aa <em>Bb</em></div><div class="t2">Instrument Serif · IBM Plex</div></div>
+      <div class="in">
+        <div class="k">Option A</div>
+        <h2>Laboratory</h2>
+        <p>Reads like a technical datasheet — the kind of document a lab actually issues. Warm paper, hairline rules, monospaced labels and figure captions.</p>
+        <ul>
+          <li>Signals rigour and traceability</li>
+          <li>Products laid out as spec tables</li>
+          <li>Nobody in the category looks like this</li>
+        </ul>
+      </div>
+      <a class="go" href="/preview/a/">View option A →</a>
+    </div>
+
+    <div class="opt">
+      <div class="sw b-sw"><div class="t1">Aa <em>Bb</em></div><div class="t2">Archivo Expanded</div></div>
+      <div class="in">
+        <div class="k">Option B</div>
+        <h2>Clinical</h2>
+        <p>Clean white, wide industrial type, one strong blue. Large photography and soft rounded cards — the look of a well-funded modern biotech.</p>
+        <ul>
+          <li>Familiar and confidence-building</li>
+          <li>Easiest for a corporate buyer to scan</li>
+          <li>Scales well as you add products</li>
+        </ul>
+      </div>
+      <a class="go" href="/preview/b/">View option B →</a>
+    </div>
+
+    <div class="opt">
+      <div class="sw c-sw"><div class="t1">Aa <em>Bb</em></div><div class="t2">Bodoni Moda · Jost</div></div>
+      <div class="in">
+        <div class="k">Option C</div>
+        <h2>Apothecary</h2>
+        <p>Dark, warm and symmetrical. High-contrast serif with brass detailing — a premium ingredient house rather than a factory.</p>
+        <ul>
+          <li>Strongest for cosmetic &amp; nutraceutical buyers</li>
+          <li>Positions Biomed as a premium supplier</li>
+          <li>Most distinctive, least conventional</li>
+        </ul>
+      </div>
+      <a class="go" href="/preview/c/">View option C →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

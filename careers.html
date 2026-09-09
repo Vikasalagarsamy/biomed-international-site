@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Careers — Biomed International</title>
+<meta name="description" content="Join Biomed International — shape the future of biomedical innovation. Careers in collagen and chondroitin sulfate sodium research and manufacturing." />
+<link rel="icon" href="/assets/brand/logo.jpg" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body data-page="careers">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">Home</a> · Careers</div>
+    <span class="eyebrow">Careers</span>
+    <h1>Shape the future of biomedical innovation.</h1>
+    <p class="intro">Join a team of passionate researchers and scientists dedicated to advancing healthcare solutions.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about-grid">
+    <img class="reveal" src="/assets/home/careers-hero.jpg" alt="Biomed International researchers in the lab"/>
+    <div class="reveal prose">
+      <p>At the forefront of collagen and chondroitin sulfate sodium research, we are transforming treatments and improving lives. Work alongside experts in cutting-edge laboratories where your ideas and skills contribute to breakthrough discoveries — we believe innovation thrives in diverse and collaborative environments.</p>
+      <p>Be part of a mission that blends science, technology, and compassion. Together, we are shaping therapies that impact millions, while offering you a rewarding career path.</p>
+      <p>Explore opportunities where your expertise makes a difference. Grow with us as we lead the way in biomedical research and development.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:640px;margin:0 auto">
+    <div class="sec-head reveal" style="margin-bottom:28px"><span class="eyebrow">Apply now</span><h2 style="font-size:clamp(24px,2.8vw,32px)">Your next career move starts here.</h2></div>
+    <div class="reveal form-card">
+      <form onsubmit="applyNow(event)">
+        <div class="field-row">
+          <div class="field"><label>Full Name</label><input required name="name" placeholder="Your full name"/></div>
+          <div class="field"><label>Email</label><input required type="email" name="email" placeholder="you@email.com"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Phone</label><input required name="phone" placeholder="+91…"/></div>
+          <div class="field"><label>Degree Level</label>
+            <select name="degree">
+              <option>HSC</option><option>UG</option><option>PG</option><option>Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Experience Level</label>
+          <select name="experience">
+            <option>Fresher</option><option>Less than 1 year</option><option>Above 1 year</option>
+          </select>
+        </div>
+        <div class="field"><label>Role of Interest / Message</label><textarea name="message" placeholder="Which role are you interested in?"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit application</button>
+        <p class="form-note" id="formNote">We'll open your email app so you can attach your resume directly.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="/app.js"></script>
+<script>
+function applyNow(e){
+  e.preventDefault();
+  var f=e.target, n=document.getElementById('formNote');
+  var body=encodeURIComponent('Name: '+f.name.value+'\nPhone: '+f.phone.value+'\nDegree: '+f.degree.value+'\nExperience: '+f.experience.value+'\n\n'+f.message.value+'\n\n(Please attach your resume to this email — PDF or DOC/DOCX, under 2MB)');
+  n.style.color='var(--teal-deep)';
+  n.textContent='Opening your email app — please attach your resume before sending…';
+  window.location.href='mailto:info@biomedintl.com?subject='+encodeURIComponent('Job Application — '+f.name.value)+'&body='+body;
+}
+</script>
+</body>
+</html>

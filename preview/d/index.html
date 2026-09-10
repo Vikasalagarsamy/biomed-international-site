@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-palette="green">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,32 +7,44 @@
 <link rel="icon" href="/assets/brand/logo.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
 <style>
+/* ---------- palettes ---------- */
+:root[data-palette="green"]{
+  --accent:#2F6B45; --accent-d:#225033; --accent-soft:#E4EFE5;
+  --accent-lt:#9AD3AC; --accent-lt2:#8FCBA1;
+  --deep:#12301D; --on-deep:#EFF2EA; --on-deep-mute:rgba(239,242,234,.68); --deep-line:rgba(239,242,234,.16);
+}
+:root[data-palette="teal"]{
+  --accent:#0F766E; --accent-d:#0B5A54; --accent-soft:#DEF1EF;
+  --accent-lt:#84D2C7; --accent-lt2:#6FC7BB;
+  --deep:#06302D; --on-deep:#EAF4F2; --on-deep-mute:rgba(234,244,242,.68); --deep-line:rgba(234,244,242,.16);
+}
+:root[data-palette="navy"]{
+  --accent:#1B3A6B; --accent-d:#12294D; --accent-soft:#E4EAF4;
+  --accent-lt:#9CBBEA; --accent-lt2:#8AAEE4;
+  --deep:#101F38; --on-deep:#EDF1F7; --on-deep-mute:rgba(237,241,247,.68); --deep-line:rgba(237,241,247,.16);
+}
 :root{
   --cream:#FAF8F1; --cream-2:#F1EFE4; --card:#FFFFFF;
   --ink:#1A2A1F; --ink-2:#4E5C52; --mute:#8B9287;
   --line:#DEDDCD; --line-soft:#E9E7DA;
-  --green:#2F6B45; --green-d:#225033; --green-l:#E4EFE5;
-  --deep:#12301D; --deep-2:#183A25;
-  --on-deep:#EFF2EA; --on-deep-mute:rgba(239,242,234,.68); --deep-line:rgba(239,242,234,.16);
   --disp:"Newsreader",Georgia,serif;
   --sans:"IBM Plex Sans",system-ui,sans-serif;
   --mono:"IBM Plex Mono",monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:60px}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;padding-bottom:64px;transition:background .3s}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .wrap{max-width:1220px;margin:0 auto;padding:0 34px}
 h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.1;letter-spacing:-.015em}
 .xl{font-size:clamp(38px,5.4vw,70px)}
 .lg{font-size:clamp(28px,3.6vw,46px)}
-.md{font-size:clamp(21px,2.2vw,28px)}
 p{color:var(--ink-2);font-size:16.5px}
-.lbl{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:16px}
-.on-dark .lbl,.deep .lbl{color:#8FCBA1}
+.lbl{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.deep .lbl{color:var(--accent-lt2)}
 
-/* NAV */
 header{position:sticky;top:0;z-index:100;background:rgba(250,248,241,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
 .nv{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
 .bd{display:flex;align-items:center;gap:12px;flex-shrink:0}
@@ -40,138 +52,133 @@ header{position:sticky;top:0;z-index:100;background:rgba(250,248,241,.94);backdr
 .bd .t1{display:block;font-family:var(--disp);font-size:20px;line-height:1.05}
 .bd .t2{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-top:4px}
 .lk{display:flex;gap:26px}
-.lk a{font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:4px 0}
-.lk a:hover{color:var(--green)}
-.lk a.on{color:var(--green)}
-.lk a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--green)}
+.lk a{font-size:14px;font-weight:500;color:var(--ink-2);padding:4px 0}
+.lk a:hover{color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;padding:13px 24px;transition:.22s;border:1.5px solid transparent;white-space:nowrap}
-.b-fill{background:var(--green);color:#fff}
-.b-fill:hover{background:var(--green-d)}
-.b-out{border-color:var(--line);color:var(--ink)}
-.b-out:hover{border-color:var(--green);color:var(--green)}
+.b-fill{background:var(--accent);color:#fff}
+.b-fill:hover{background:var(--accent-d)}
 .b-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .b-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
-.b-white{background:#fff;color:var(--green-d)}
+.b-white{background:#fff;color:var(--accent-d)}
 
-/* HERO — full-bleed photo, headline over image */
-.hero{position:relative;min-height:min(86vh,720px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+/* HERO */
+.hero{position:relative;min-height:min(88vh,760px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:0}
 .hero .bg{position:absolute;inset:0}
 .hero .bg img{width:100%;height:100%;object-fit:cover}
-.hero .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(18,48,29,.82) 0%,rgba(18,48,29,.55) 38%,rgba(18,48,29,.86) 100%)}
-.hero-in{position:relative;z-index:2;padding:120px 0 0;color:#fff}
-.hero-in .lbl{color:#9AD3AC}
-.hero h1{color:#fff;max-width:17ch;margin-bottom:22px}
-.hero h1 em{font-style:italic;color:#9AD3AC}
-.hero .sub{color:rgba(255,255,255,.86);font-size:18px;max-width:56ch;margin-bottom:32px}
-.hero .acts{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
-.flagline{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);
-  backdrop-filter:blur(6px);padding:12px 18px;margin-bottom:40px;max-width:640px}
-.flagline .dot{width:7px;height:7px;border-radius:50%;background:#9AD3AC;flex-shrink:0}
-.flagline span{font-size:14.5px;color:#fff;font-weight:500;line-height:1.4}
-
-/* segment strip across bottom of hero (ICE Pharma device) */
-.segs{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.22);background:rgba(18,48,29,.5);backdrop-filter:blur(8px)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,
+  color-mix(in srgb,var(--deep) 84%,transparent) 0%, color-mix(in srgb,var(--deep) 56%,transparent) 36%,
+  color-mix(in srgb,var(--deep) 90%,transparent) 100%)}
+.hero-in{position:relative;z-index:2;padding:116px 0 0;color:#fff}
+.hero-in .lbl{color:var(--accent-lt)}
+.hero h1{color:#fff;max-width:17ch;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--accent-lt)}
+.hero .sub{color:rgba(255,255,255,.86);font-size:18px;max-width:58ch;margin-bottom:30px}
+.claims{list-style:none;margin-bottom:34px;max-width:660px}
+.claims li{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(6px);padding:13px 18px;margin-bottom:9px}
+.claims .n{font-family:var(--mono);font-size:11px;color:var(--accent-lt);padding-top:3px;flex-shrink:0}
+.claims span.c{font-size:15px;color:#fff;font-weight:500;line-height:1.45}
+.acts{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:50px}
+.segs{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.22);background:color-mix(in srgb,var(--deep) 52%,transparent);backdrop-filter:blur(8px)}
 .segs-in{display:grid;grid-template-columns:repeat(4,1fr)}
 .segs-in a{padding:22px 18px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.82);border-right:1px solid rgba(255,255,255,.16);transition:.25s}
+  text-transform:uppercase;color:rgba(255,255,255,.8);border-right:1px solid rgba(255,255,255,.16);transition:.25s;position:relative}
 .segs-in a:last-child{border-right:none}
 .segs-in a:hover{background:rgba(255,255,255,.12);color:#fff}
+.segs-in a.pri{color:#fff}
+.segs-in a.pri::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-lt)}
 
 section{padding:96px 0}
 .tint{background:var(--cream-2)}
-.deep{background:var(--deep);color:var(--on-deep)}
+.deep{background:var(--deep);color:var(--on-deep);transition:background .3s}
 .deep h2,.deep h3{color:var(--on-deep)}
 .deep p{color:var(--on-deep-mute)}
-.head{max-width:660px;margin-bottom:56px}
+.head{max-width:680px;margin-bottom:52px}
 .head.center{margin-left:auto;margin-right:auto;text-align:center}
 .head p{margin-top:16px}
 
-/* VALUE CHAIN — the spine */
-.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:8px}
-.step{position:relative;text-align:center;padding:0 14px}
-.step .ic{width:66px;height:66px;border:1px solid var(--deep-line);border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 18px;background:rgba(255,255,255,.04);transition:.3s}
-.step:hover .ic{background:rgba(154,211,172,.16);border-color:#9AD3AC}
-.step svg{width:26px;height:26px;stroke:#9AD3AC;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:rgba(154,211,172,.7);margin-bottom:7px}
-.step h3{font-size:17px;font-family:var(--sans);font-weight:600;letter-spacing:0;color:var(--on-deep)}
-.step p{font-size:13.5px;margin-top:8px;line-height:1.55}
-.step::after{content:"";position:absolute;top:33px;right:-6px;width:12px;height:12px;border-top:1px solid var(--deep-line);
-  border-right:1px solid var(--deep-line);transform:rotate(45deg)}
-.step:last-child::after{display:none}
-.chain-note{margin-top:52px;padding-top:26px;border-top:1px solid var(--deep-line);display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
-.chain-note .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AD3AC;flex-shrink:0;padding-top:3px}
-.chain-note p{max-width:62ch;font-size:15.5px}
+/* BACKWARD INTEGRATION — replaces the invented 5-step chain */
+.integ{margin-top:12px}
+.axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--on-deep-mute);padding-bottom:12px;border-bottom:1px dashed var(--deep-line);margin-bottom:34px}
+.track{margin-bottom:34px}
+.thead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.thead .tl{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--on-deep)}
+.thead .td{font-size:14.5px;color:var(--on-deep-mute)}
+.rail{position:relative;height:12px;background:rgba(255,255,255,.07);border:1px solid var(--deep-line)}
+.rail .bar{position:absolute;top:0;bottom:0;background:var(--accent-lt)}
+.track.dim .thead .tl{color:var(--on-deep-mute)}
+.track.dim .rail .bar{background:rgba(255,255,255,.22)}
+.track.dim .rail .bar::before{content:"";position:absolute;left:0;top:-6px;bottom:-6px;width:1px;background:rgba(255,255,255,.4)}
+.integ-note{margin-top:40px;padding-top:26px;border-top:1px solid var(--deep-line);display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.integ-note .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-lt2);flex-shrink:0;padding-top:3px}
+.integ-note p{max-width:64ch;font-size:15.5px}
 
-/* TWO COL */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .two img.ph{width:100%;height:440px;object-fit:cover}
 .body p+p{margin-top:15px}
 .arrow{display:inline-flex;gap:9px;align-items:center;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--green);margin-top:24px;border-bottom:1px solid var(--green);padding-bottom:5px}
-.deep .arrow{color:#9AD3AC;border-color:#9AD3AC}
+  text-transform:uppercase;color:var(--accent);margin-top:24px;border-bottom:1px solid var(--accent);padding-bottom:5px}
+.deep .arrow{color:var(--accent-lt);border-color:var(--accent-lt)}
 .arrow span{transition:.22s}.arrow:hover span{transform:translateX(4px)}
 
-/* PRODUCTS */
 .prods{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .prod{background:var(--card);border:1px solid var(--line);transition:.28s}
-.prod:hover{border-color:var(--green);transform:translateY(-3px)}
+.prod:hover{border-color:var(--accent);transform:translateY(-3px)}
 .prod .ph{background:var(--cream-2);height:220px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid var(--line-soft)}
 .prod .ph img{max-height:100%;width:auto;object-fit:contain}
 .prod .in{padding:30px}
 .prod h3{font-size:26px;margin-bottom:10px}
 .prod p{font-size:15px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.tag{background:var(--green-l);color:var(--green-d);font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px}
+.tag{background:var(--accent-soft);color:var(--accent-d);font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px}
 
-/* WHY — 4 icon columns */
 .why{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .why > div{padding:0 30px;border-right:1px solid var(--line)}
 .why > div:first-child{padding-left:0}
 .why > div:last-child{border-right:none;padding-right:0}
-.why svg{width:30px;height:30px;stroke:var(--green);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.why svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
 .why h3{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:0;margin-bottom:9px}
 .why p{font-size:14.5px}
 
-/* CERTS */
 .certs{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .cert{background:var(--card);border:1px solid var(--line);padding:28px;text-align:center}
 .cert img{height:200px;width:auto;margin:0 auto 18px;object-fit:contain}
 .cert h4{font-family:var(--disp);font-size:20px;font-weight:400}
 .cert .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);margin-top:7px}
 
-/* CTA */
-.cta{background:var(--green);color:#fff;padding:88px 0;text-align:center}
+.cta{background:var(--accent);color:#fff;padding:88px 0;text-align:center;transition:background .3s}
 .cta h2{color:#fff;max-width:17ch;margin:0 auto 16px}
 .cta p{color:rgba(255,255,255,.85);max-width:54ch;margin:0 auto 30px;font-size:17px}
-.cta .acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta .acts{justify-content:center;margin-bottom:0}
 
-footer{background:var(--deep);color:var(--on-deep-mute);padding:70px 0 28px}
+footer{background:var(--deep);color:var(--on-deep-mute);padding:70px 0 28px;transition:background .3s}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:44px;padding-bottom:38px;border-bottom:1px solid var(--deep-line)}
 footer .t1{font-family:var(--disp);font-size:22px;color:var(--on-deep);margin-bottom:12px}
 footer .tg{font-size:14px;max-width:34ch}
-footer .fh{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:#8FCBA1;margin-bottom:16px}
+footer .fh{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-lt2);margin-bottom:16px}
 footer ul{list-style:none}
 footer li{margin-bottom:11px;font-size:14px}
 footer li a:hover{color:var(--on-deep)}
 .fb{display:flex;justify-content:space-between;padding-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
-  color:rgba(239,242,234,.45);flex-wrap:wrap;gap:8px}
+  color:rgba(255,255,255,.4);flex-wrap:wrap;gap:8px}
 
-/* back pill */
-.bk{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:500;display:flex;align-items:center;gap:4px;
-  background:rgba(18,48,29,.95);backdrop-filter:blur(12px);border-radius:999px;padding:6px;border:1px solid rgba(154,211,172,.3);
-  box-shadow:0 18px 40px -14px rgba(0,0,0,.5)}
-.bk i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7E8F82;padding:0 10px 0 14px;white-space:nowrap}
-.bk a{font-size:13px;font-weight:600;color:#CBD8CD;padding:9px 15px;border-radius:999px;white-space:nowrap;transition:.2s}
-.bk a:hover{color:#fff;background:rgba(255,255,255,.1)}
-.bk a.on{background:#EFF2EA;color:#12301D}
-@media(max-width:640px){.bk i{display:none}.bk a{padding:9px 12px;font-size:12.5px}}
+/* palette pill */
+.pal{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:500;display:flex;align-items:center;gap:5px;
+  background:rgba(20,24,21,.95);backdrop-filter:blur(14px);border-radius:999px;padding:7px 8px;
+  box-shadow:0 20px 45px -14px rgba(0,0,0,.6);max-width:calc(100vw - 24px);overflow-x:auto}
+.pal i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8B958D;padding:0 8px 0 10px;white-space:nowrap}
+.pal button{border:none;cursor:pointer;background:transparent;display:flex;align-items:center;gap:7px;padding:7px 13px 7px 8px;
+  border-radius:999px;transition:.2s;font-family:inherit;font-size:12.5px;font-weight:600;color:#C9D2CB;white-space:nowrap}
+.pal button:hover{background:rgba(255,255,255,.1);color:#fff}
+.pal button[aria-pressed="true"]{background:#fff;color:#141815}
+.pal .dot{width:16px;height:16px;border-radius:50%;flex:0 0 16px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.pal .back{font-size:12px;color:#8B958D;padding:0 12px;border-left:1px solid rgba(255,255,255,.16);margin-left:3px;white-space:nowrap}
+.pal .back:hover{color:#fff}
+@media(max-width:760px){.pal i{display:none}.pal button span.nm{display:none}.pal button{padding:8px}}
 
 @media(max-width:1040px){
   .lk{display:none}
-  .chain{grid-template-columns:repeat(2,1fr);gap:44px 20px}
-  .step::after{display:none}
   .why{grid-template-columns:1fr 1fr;gap:38px 0}
   .why > div{padding:0 26px}
   .why > div:nth-child(2n){border-right:none;padding-right:0}
@@ -190,12 +197,12 @@ footer li a:hover{color:var(--on-deep)}
   .wrap{padding:0 20px}
   section{padding:64px 0}
   .hero{min-height:0}
-  .hero-in{padding:88px 0 0}
-  .chain{grid-template-columns:1fr;gap:34px}
+  .hero-in{padding:84px 0 0}
   .why{grid-template-columns:1fr;gap:32px}
   .why > div{padding:0;border-right:none}
   .fg{grid-template-columns:1fr}
   .nv .btn{display:none}
+  .thead{gap:6px}
 }
 </style>
 </head>
@@ -205,72 +212,59 @@ footer li a:hover{color:var(--on-deep)}
   <a href="#top" class="bd"><img src="/assets/brand/logo.jpg" alt="Biomed International"/>
     <span><span class="t1">Biomed International</span><span class="t2">Bioceutical Manufacturing</span></span></a>
   <nav class="lk">
-    <a href="#about">About Us</a><a href="#products">Products</a><a href="#chain">Capabilities</a>
+    <a href="#about">About Us</a><a href="#products">Products</a><a href="#integration">Capabilities</a>
     <a href="#quality">Quality</a><a href="#certs">Certifications</a><a href="#contact">Contact</a>
   </nav>
   <a href="#contact" class="btn b-fill">Request a quote</a>
 </div></header>
 
-<section class="hero" id="top" style="padding:0">
+<section class="hero" id="top">
   <div class="bg"><img src="/assets/infra/spray-dry-1.jpg" alt="Processing and filtration line at Biomed International, Tirupati District"/></div>
   <div class="hero-in"><div class="wrap">
     <span class="lbl">Established 2014 · Tirupati District, Andhra Pradesh</span>
     <h1 class="xl">From basic raw material to <em>finished ingredient</em>.</h1>
-    <p class="sub">Chondroitin Sulfate Sodium and collagen, manufactured to USP/BP grade at our own facility — with control of the process from the starting material onward.</p>
-    <div class="flagline">
-      <span class="dot"></span>
-      <span>The only company in India holding a drug licence for Chondroitin Sulfate Sodium.</span>
-    </div>
+    <p class="sub">Chondroitin Sulphate Sodium and collagen, manufactured to USP/BP grade at our own facility — from the base raw material stage right through to the finished product.</p>
+    <ul class="claims">
+      <li><span class="n">01</span><span class="c">The only company in India manufacturing Chondroitin Sulphate from the basic key starting material.</span></li>
+      <li><span class="n">02</span><span class="c">Sole drug licence holder for Chondroitin Sulphate.</span></li>
+    </ul>
     <div class="acts">
       <a href="#products" class="btn b-white">Our products →</a>
       <a href="#contact" class="btn b-ghost">Request specifications</a>
     </div>
   </div></div>
   <div class="segs"><div class="wrap segs-in" style="padding:0">
-    <a href="#products">Pharmaceutical</a>
+    <a href="#products" class="pri">Pharmaceutical</a>
     <a href="#products">Nutraceutical</a>
     <a href="#products">Food</a>
     <a href="#products">Cosmetic</a>
   </div></div>
 </section>
 
-<!-- VALUE CHAIN — the differentiator, so it sits directly under the hero -->
-<section class="deep" id="chain">
+<!-- BACKWARD INTEGRATION -->
+<section class="deep" id="integration">
   <div class="wrap">
     <div class="head">
       <span class="lbl">Capabilities</span>
-      <h2 class="lg">We control the entire chain — from raw material to finished ingredient.</h2>
+      <h2 class="lg">We start where the others don't.</h2>
+      <p>Chondroitin Sulphate reaches the Indian market in one of two ways. Almost every supplier imports it, or picks the process up somewhere in the middle. We are the only company in India, as of now, making it from the base raw material stage through to the finished product.</p>
     </div>
-    <div class="chain">
-      <div class="step">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-7-6.5-7-10a7 7 0 0 1 14 0c0 3.5-3 7-7 10z"/><path d="M12 3v18"/></svg></div>
-        <div class="n">01</div><h3>Raw material</h3>
-        <p>Sourced and qualified in-house from the basic starting material.</p>
+    <div class="integ">
+      <div class="axis"><span>Base raw material</span><span>Finished product</span></div>
+      <div class="track">
+        <div class="thead"><span class="tl">Biomed International</span>
+          <span class="td">Full process, in our own facility, under our own drug licence.</span></div>
+        <div class="rail"><div class="bar" style="left:0;width:100%"></div></div>
       </div>
-      <div class="step">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3L5.6 5.6"/></svg></div>
-        <div class="n">02</div><h3>Processing</h3>
-        <p>Extraction and reaction under controlled, drug-licence conditions.</p>
-      </div>
-      <div class="step">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 10.2A6 6 0 0 1 6 13.2C6 9.4 12 3 12 3z"/><path d="M9.5 14.2a2.8 2.8 0 0 0 2.8 2.6"/></svg></div>
-        <div class="n">03</div><h3>Purification</h3>
-        <p>Multi-stage purification to USP/BP specification.</p>
-      </div>
-      <div class="step">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.4c0 4.3-3.1 8.1-7.5 9.3-4.4-1.2-7.5-5-7.5-9.3V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg></div>
-        <div class="n">04</div><h3>Quality control</h3>
-        <p>Shimadzu HPLC, GC, UV and polarimetry on every batch.</p>
-      </div>
-      <div class="step">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.6 5.7 3.6 9S14.4 18.4 12 21c-2.4-2.6-3.6-5.7-3.6-9S9.6 5.6 12 3z"/></svg></div>
-        <div class="n">05</div><h3>Global supply</h3>
-        <p>Supplied across India and exported to multiple countries.</p>
+      <div class="track dim">
+        <div class="thead"><span class="tl">Typical supplier</span>
+          <span class="td">Imports the material, or enters only at an intermediate stage.</span></div>
+        <div class="rail"><div class="bar" style="left:58%;width:42%"></div></div>
       </div>
     </div>
-    <div class="chain-note">
+    <div class="integ-note">
       <span class="k">Why it matters</span>
-      <p>Most suppliers buy an intermediate and finish it. Because we start from the basic key starting material, every batch is traceable end to end — and the specification is ours to control, not inherited from someone else's process.</p>
+      <p>When you start at the beginning, the specification is yours to control rather than inherited from someone else's process — and every batch is traceable end to end, back to the raw material it came from.</p>
     </div>
   </div>
 </section>
@@ -288,13 +282,13 @@ footer li a:hover{color:var(--on-deep)}
 
 <section class="tint" id="products">
   <div class="wrap">
-    <div class="head center"><span class="lbl">Product range</span><h2 class="lg">Two ingredients, manufactured to specification.</h2></div>
+    <div class="head center"><span class="lbl">Product range</span><h2 class="lg">Two animal-source ingredients, manufactured to specification.</h2></div>
     <div class="prods">
       <div class="prod">
-        <div class="ph"><img src="/assets/products/chondroitin.jpg" alt="Chondroitin Sulfate Sodium"/></div>
+        <div class="ph"><img src="/assets/products/chondroitin.jpg" alt="Chondroitin Sulphate Sodium"/></div>
         <div class="in">
-          <h3>Chondroitin Sulfate Sodium</h3>
-          <p>Bovine source, USP/BP grade — produced under drug-licence manufacturing standards with full traceability from the starting material.</p>
+          <h3>Chondroitin Sulphate Sodium</h3>
+          <p>Bovine source, USP/BP grade — manufactured from the basic key starting material under our own drug licence, with full traceability.</p>
           <div class="tags"><span class="tag">Bovine</span><span class="tag">USP / BP</span><span class="tag">Drug licence</span><span class="tag">HPLC tested</span></div>
         </div>
       </div>
@@ -302,7 +296,7 @@ footer li a:hover{color:var(--on-deep)}
         <div class="ph"><img src="/assets/products/collagen.jpg" alt="Collagen"/></div>
         <div class="in">
           <h3>Collagen</h3>
-          <p>Fish, bovine and chicken collagen, spray dried in a dedicated cleanroom to a free-flowing, high-purity powder.</p>
+          <p>Fish, bovine and chicken collagen, spray dried in a dedicated cleanroom to a free-flowing, high-purity powder — for pharma, nutraceutical, food and cosmetic use.</p>
           <div class="tags"><span class="tag">Fish</span><span class="tag">Bovine</span><span class="tag">Chicken</span><span class="tag">Spray dried</span></div>
         </div>
       </div>
@@ -321,7 +315,7 @@ footer li a:hover{color:var(--on-deep)}
     <div>
       <svg viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 10.2A6 6 0 0 1 6 13.2C6 9.4 12 3 12 3z"/></svg>
       <h3>High purity</h3>
-      <p>Controlled manufacturing and analytical testing — HPLC, UV, polarimetry — on every batch.</p>
+      <p>Controlled manufacturing and analytical testing — HPLC, GC, UV, polarimetry — on every batch.</p>
     </div>
     <div>
       <svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.4c0 4.3-3.1 8.1-7.5 9.3-4.4-1.2-7.5-5-7.5-9.3V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg>
@@ -368,9 +362,9 @@ footer li a:hover{color:var(--on-deep)}
 <footer><div class="wrap">
   <div class="fg">
     <div><div class="t1">Biomed International</div>
-      <p class="tg" style="color:var(--on-deep-mute)">Bioceutical manufacturing since 2014 — Chondroitin Sulfate Sodium and Collagen for the pharma, nutraceutical, food and cosmetic industries.</p></div>
-    <div><div class="fh">Navigate</div><ul><li><a href="#about">About Us</a></li><li><a href="#products">Products</a></li><li><a href="#chain">Capabilities</a></li><li><a href="#quality">Quality</a></li></ul></div>
-    <div><div class="fh">Products</div><ul><li><a href="#products">Chondroitin Sulfate Sodium</a></li><li><a href="#products">Collagen</a></li></ul></div>
+      <p class="tg" style="color:var(--on-deep-mute)">Bioceutical manufacturing since 2014 — Chondroitin Sulphate Sodium and Collagen for the pharma, nutraceutical, food and cosmetic industries.</p></div>
+    <div><div class="fh">Navigate</div><ul><li><a href="#about">About Us</a></li><li><a href="#products">Products</a></li><li><a href="#integration">Capabilities</a></li><li><a href="#quality">Quality</a></li></ul></div>
+    <div><div class="fh">Products</div><ul><li><a href="#products">Chondroitin Sulphate Sodium</a></li><li><a href="#products">Collagen</a></li></ul></div>
     <div><div class="fh">Get in touch</div><ul>
       <li>Mekanuru Village, Guduru Mandal, Tirupati District, Andhra Pradesh – 524410</li>
       <li><a href="tel:+919791154650">+91 97911 54650</a></li>
@@ -379,14 +373,32 @@ footer li a:hover{color:var(--on-deep)}
   <div class="fb"><span>© 2026 Biomed International — All rights reserved</span><span>Tirupati District, Andhra Pradesh, India</span></div>
 </div></footer>
 
-<div class="bk">
-  <i>Design options</i>
-  <a href="/preview/a/">A</a>
-  <a href="/preview/b/">B</a>
-  <a href="/preview/c/">C</a>
-  <a href="/preview/d/" class="on">D · Green</a>
-  <a href="/preview/colors/">Colours</a>
+<div class="pal" id="pal">
+  <i>Colour</i>
+  <button data-p="green" aria-pressed="true"><span class="dot" style="background:#2F6B45"></span><span class="nm">Green</span></button>
+  <button data-p="teal"  aria-pressed="false"><span class="dot" style="background:#0F766E"></span><span class="nm">Teal</span></button>
+  <button data-p="navy"  aria-pressed="false"><span class="dot" style="background:#1B3A6B"></span><span class="nm">Navy</span></button>
+  <a class="back" href="/preview/">← All options</a>
 </div>
+
+<script>
+(function(){
+  var bar=document.getElementById('pal');
+  var saved=null; try{saved=localStorage.getItem('bm-d-pal');}catch(e){}
+  if(saved) apply(saved);
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-p]'); if(!b) return;
+    apply(b.getAttribute('data-p'));
+  });
+  function apply(p){
+    document.documentElement.setAttribute('data-palette',p);
+    bar.querySelectorAll('button[data-p]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-p')===p ? 'true':'false');
+    });
+    try{localStorage.setItem('bm-d-pal',p);}catch(e){}
+  }
+})();
+</script>
 
 </body>
 </html>

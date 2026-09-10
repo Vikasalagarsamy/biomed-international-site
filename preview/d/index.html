@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Biomed International — Bioceutical Manufacturing</title>
+<link rel="icon" href="/assets/brand/logo.jpg" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF8F1; --cream-2:#F1EFE4; --card:#FFFFFF;
+  --ink:#1A2A1F; --ink-2:#4E5C52; --mute:#8B9287;
+  --line:#DEDDCD; --line-soft:#E9E7DA;
+  --green:#2F6B45; --green-d:#225033; --green-l:#E4EFE5;
+  --deep:#12301D; --deep-2:#183A25;
+  --on-deep:#EFF2EA; --on-deep-mute:rgba(239,242,234,.68); --deep-line:rgba(239,242,234,.16);
+  --disp:"Newsreader",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:60px}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1220px;margin:0 auto;padding:0 34px}
+h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.1;letter-spacing:-.015em}
+.xl{font-size:clamp(38px,5.4vw,70px)}
+.lg{font-size:clamp(28px,3.6vw,46px)}
+.md{font-size:clamp(21px,2.2vw,28px)}
+p{color:var(--ink-2);font-size:16.5px}
+.lbl{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:16px}
+.on-dark .lbl,.deep .lbl{color:#8FCBA1}
+
+/* NAV */
+header{position:sticky;top:0;z-index:100;background:rgba(250,248,241,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.nv{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.bd{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.bd img{width:40px;height:40px;object-fit:contain}
+.bd .t1{display:block;font-family:var(--disp);font-size:20px;line-height:1.05}
+.bd .t2{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.lk{display:flex;gap:26px}
+.lk a{font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:4px 0}
+.lk a:hover{color:var(--green)}
+.lk a.on{color:var(--green)}
+.lk a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--green)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;padding:13px 24px;transition:.22s;border:1.5px solid transparent;white-space:nowrap}
+.b-fill{background:var(--green);color:#fff}
+.b-fill:hover{background:var(--green-d)}
+.b-out{border-color:var(--line);color:var(--ink)}
+.b-out:hover{border-color:var(--green);color:var(--green)}
+.b-ghost{border-color:rgba(255,255,255,.5);color:#fff}
+.b-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.b-white{background:#fff;color:var(--green-d)}
+
+/* HERO — full-bleed photo, headline over image */
+.hero{position:relative;min-height:min(86vh,720px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(18,48,29,.82) 0%,rgba(18,48,29,.55) 38%,rgba(18,48,29,.86) 100%)}
+.hero-in{position:relative;z-index:2;padding:120px 0 0;color:#fff}
+.hero-in .lbl{color:#9AD3AC}
+.hero h1{color:#fff;max-width:17ch;margin-bottom:22px}
+.hero h1 em{font-style:italic;color:#9AD3AC}
+.hero .sub{color:rgba(255,255,255,.86);font-size:18px;max-width:56ch;margin-bottom:32px}
+.hero .acts{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.flagline{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);
+  backdrop-filter:blur(6px);padding:12px 18px;margin-bottom:40px;max-width:640px}
+.flagline .dot{width:7px;height:7px;border-radius:50%;background:#9AD3AC;flex-shrink:0}
+.flagline span{font-size:14.5px;color:#fff;font-weight:500;line-height:1.4}
+
+/* segment strip across bottom of hero (ICE Pharma device) */
+.segs{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.22);background:rgba(18,48,29,.5);backdrop-filter:blur(8px)}
+.segs-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.segs-in a{padding:22px 18px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.82);border-right:1px solid rgba(255,255,255,.16);transition:.25s}
+.segs-in a:last-child{border-right:none}
+.segs-in a:hover{background:rgba(255,255,255,.12);color:#fff}
+
+section{padding:96px 0}
+.tint{background:var(--cream-2)}
+.deep{background:var(--deep);color:var(--on-deep)}
+.deep h2,.deep h3{color:var(--on-deep)}
+.deep p{color:var(--on-deep-mute)}
+.head{max-width:660px;margin-bottom:56px}
+.head.center{margin-left:auto;margin-right:auto;text-align:center}
+.head p{margin-top:16px}
+
+/* VALUE CHAIN — the spine */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:8px}
+.step{position:relative;text-align:center;padding:0 14px}
+.step .ic{width:66px;height:66px;border:1px solid var(--deep-line);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;background:rgba(255,255,255,.04);transition:.3s}
+.step:hover .ic{background:rgba(154,211,172,.16);border-color:#9AD3AC}
+.step svg{width:26px;height:26px;stroke:#9AD3AC;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:rgba(154,211,172,.7);margin-bottom:7px}
+.step h3{font-size:17px;font-family:var(--sans);font-weight:600;letter-spacing:0;color:var(--on-deep)}
+.step p{font-size:13.5px;margin-top:8px;line-height:1.55}
+.step::after{content:"";position:absolute;top:33px;right:-6px;width:12px;height:12px;border-top:1px solid var(--deep-line);
+  border-right:1px solid var(--deep-line);transform:rotate(45deg)}
+.step:last-child::after{display:none}
+.chain-note{margin-top:52px;padding-top:26px;border-top:1px solid var(--deep-line);display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.chain-note .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AD3AC;flex-shrink:0;padding-top:3px}
+.chain-note p{max-width:62ch;font-size:15.5px}
+
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.two img.ph{width:100%;height:440px;object-fit:cover}
+.body p+p{margin-top:15px}
+.arrow{display:inline-flex;gap:9px;align-items:center;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green);margin-top:24px;border-bottom:1px solid var(--green);padding-bottom:5px}
+.deep .arrow{color:#9AD3AC;border-color:#9AD3AC}
+.arrow span{transition:.22s}.arrow:hover span{transform:translateX(4px)}
+
+/* PRODUCTS */
+.prods{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.prod{background:var(--card);border:1px solid var(--line);transition:.28s}
+.prod:hover{border-color:var(--green);transform:translateY(-3px)}
+.prod .ph{background:var(--cream-2);height:220px;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:1px solid var(--line-soft)}
+.prod .ph img{max-height:100%;width:auto;object-fit:contain}
+.prod .in{padding:30px}
+.prod h3{font-size:26px;margin-bottom:10px}
+.prod p{font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{background:var(--green-l);color:var(--green-d);font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px}
+
+/* WHY — 4 icon columns */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.why > div{padding:0 30px;border-right:1px solid var(--line)}
+.why > div:first-child{padding-left:0}
+.why > div:last-child{border-right:none;padding-right:0}
+.why svg{width:30px;height:30px;stroke:var(--green);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.why h3{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:0;margin-bottom:9px}
+.why p{font-size:14.5px}
+
+/* CERTS */
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cert{background:var(--card);border:1px solid var(--line);padding:28px;text-align:center}
+.cert img{height:200px;width:auto;margin:0 auto 18px;object-fit:contain}
+.cert h4{font-family:var(--disp);font-size:20px;font-weight:400}
+.cert .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);margin-top:7px}
+
+/* CTA */
+.cta{background:var(--green);color:#fff;padding:88px 0;text-align:center}
+.cta h2{color:#fff;max-width:17ch;margin:0 auto 16px}
+.cta p{color:rgba(255,255,255,.85);max-width:54ch;margin:0 auto 30px;font-size:17px}
+.cta .acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+footer{background:var(--deep);color:var(--on-deep-mute);padding:70px 0 28px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:44px;padding-bottom:38px;border-bottom:1px solid var(--deep-line)}
+footer .t1{font-family:var(--disp);font-size:22px;color:var(--on-deep);margin-bottom:12px}
+footer .tg{font-size:14px;max-width:34ch}
+footer .fh{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:#8FCBA1;margin-bottom:16px}
+footer ul{list-style:none}
+footer li{margin-bottom:11px;font-size:14px}
+footer li a:hover{color:var(--on-deep)}
+.fb{display:flex;justify-content:space-between;padding-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:rgba(239,242,234,.45);flex-wrap:wrap;gap:8px}
+
+/* back pill */
+.bk{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:500;display:flex;align-items:center;gap:4px;
+  background:rgba(18,48,29,.95);backdrop-filter:blur(12px);border-radius:999px;padding:6px;border:1px solid rgba(154,211,172,.3);
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.5)}
+.bk i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7E8F82;padding:0 10px 0 14px;white-space:nowrap}
+.bk a{font-size:13px;font-weight:600;color:#CBD8CD;padding:9px 15px;border-radius:999px;white-space:nowrap;transition:.2s}
+.bk a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.bk a.on{background:#EFF2EA;color:#12301D}
+@media(max-width:640px){.bk i{display:none}.bk a{padding:9px 12px;font-size:12.5px}}
+
+@media(max-width:1040px){
+  .lk{display:none}
+  .chain{grid-template-columns:repeat(2,1fr);gap:44px 20px}
+  .step::after{display:none}
+  .why{grid-template-columns:1fr 1fr;gap:38px 0}
+  .why > div{padding:0 26px}
+  .why > div:nth-child(2n){border-right:none;padding-right:0}
+  .why > div:nth-child(2n+1){padding-left:0}
+}
+@media(max-width:860px){
+  .two{grid-template-columns:1fr;gap:36px}
+  .two img.ph{height:300px}
+  .prods,.certs{grid-template-columns:1fr}
+  .segs-in{grid-template-columns:1fr 1fr}
+  .segs-in a:nth-child(2n){border-right:none}
+  .segs-in a:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.16)}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .wrap{padding:0 20px}
+  section{padding:64px 0}
+  .hero{min-height:0}
+  .hero-in{padding:88px 0 0}
+  .chain{grid-template-columns:1fr;gap:34px}
+  .why{grid-template-columns:1fr;gap:32px}
+  .why > div{padding:0;border-right:none}
+  .fg{grid-template-columns:1fr}
+  .nv .btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nv">
+  <a href="#top" class="bd"><img src="/assets/brand/logo.jpg" alt="Biomed International"/>
+    <span><span class="t1">Biomed International</span><span class="t2">Bioceutical Manufacturing</span></span></a>
+  <nav class="lk">
+    <a href="#about">About Us</a><a href="#products">Products</a><a href="#chain">Capabilities</a>
+    <a href="#quality">Quality</a><a href="#certs">Certifications</a><a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="btn b-fill">Request a quote</a>
+</div></header>
+
+<section class="hero" id="top" style="padding:0">
+  <div class="bg"><img src="/assets/infra/spray-dry-1.jpg" alt="Processing and filtration line at Biomed International, Tirupati District"/></div>
+  <div class="hero-in"><div class="wrap">
+    <span class="lbl">Established 2014 · Tirupati District, Andhra Pradesh</span>
+    <h1 class="xl">From basic raw material to <em>finished ingredient</em>.</h1>
+    <p class="sub">Chondroitin Sulfate Sodium and collagen, manufactured to USP/BP grade at our own facility — with control of the process from the starting material onward.</p>
+    <div class="flagline">
+      <span class="dot"></span>
+      <span>The only company in India holding a drug licence for Chondroitin Sulfate Sodium.</span>
+    </div>
+    <div class="acts">
+      <a href="#products" class="btn b-white">Our products →</a>
+      <a href="#contact" class="btn b-ghost">Request specifications</a>
+    </div>
+  </div></div>
+  <div class="segs"><div class="wrap segs-in" style="padding:0">
+    <a href="#products">Pharmaceutical</a>
+    <a href="#products">Nutraceutical</a>
+    <a href="#products">Food</a>
+    <a href="#products">Cosmetic</a>
+  </div></div>
+</section>
+
+<!-- VALUE CHAIN — the differentiator, so it sits directly under the hero -->
+<section class="deep" id="chain">
+  <div class="wrap">
+    <div class="head">
+      <span class="lbl">Capabilities</span>
+      <h2 class="lg">We control the entire chain — from raw material to finished ingredient.</h2>
+    </div>
+    <div class="chain">
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-7-6.5-7-10a7 7 0 0 1 14 0c0 3.5-3 7-7 10z"/><path d="M12 3v18"/></svg></div>
+        <div class="n">01</div><h3>Raw material</h3>
+        <p>Sourced and qualified in-house from the basic starting material.</p>
+      </div>
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3L5.6 5.6"/></svg></div>
+        <div class="n">02</div><h3>Processing</h3>
+        <p>Extraction and reaction under controlled, drug-licence conditions.</p>
+      </div>
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 10.2A6 6 0 0 1 6 13.2C6 9.4 12 3 12 3z"/><path d="M9.5 14.2a2.8 2.8 0 0 0 2.8 2.6"/></svg></div>
+        <div class="n">03</div><h3>Purification</h3>
+        <p>Multi-stage purification to USP/BP specification.</p>
+      </div>
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.4c0 4.3-3.1 8.1-7.5 9.3-4.4-1.2-7.5-5-7.5-9.3V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg></div>
+        <div class="n">04</div><h3>Quality control</h3>
+        <p>Shimadzu HPLC, GC, UV and polarimetry on every batch.</p>
+      </div>
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.6 5.7 3.6 9S14.4 18.4 12 21c-2.4-2.6-3.6-5.7-3.6-9S9.6 5.6 12 3z"/></svg></div>
+        <div class="n">05</div><h3>Global supply</h3>
+        <p>Supplied across India and exported to multiple countries.</p>
+      </div>
+    </div>
+    <div class="chain-note">
+      <span class="k">Why it matters</span>
+      <p>Most suppliers buy an intermediate and finish it. Because we start from the basic key starting material, every batch is traceable end to end — and the specification is ours to control, not inherited from someone else's process.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about"><div class="wrap two">
+  <div class="body">
+    <span class="lbl">Green biotechnology</span>
+    <h2 class="lg">A state-of-the-art facility, built by two technocrats.</h2>
+    <p style="margin-top:20px">Biomed International is equipped with a comprehensive laboratory featuring Shimadzu HPLC, UV spectrophotometer, polarimeter, stability chambers, and an exclusive microbiology lab.</p>
+    <p>Our promoters bring over 25 years of combined entrepreneurial experience. Unit-I at Mekanuru spans 150,000 sq. ft. across four acres — administration, two production blocks, warehouse, R&amp;D and quality control laboratories, and utility blocks.</p>
+    <a href="#contact" class="arrow">More about the company <span>→</span></a>
+  </div>
+  <img class="ph" src="/assets/home/clean-room.png" alt="Cleanroom corridor at Unit-I"/>
+</div></section>
+
+<section class="tint" id="products">
+  <div class="wrap">
+    <div class="head center"><span class="lbl">Product range</span><h2 class="lg">Two ingredients, manufactured to specification.</h2></div>
+    <div class="prods">
+      <div class="prod">
+        <div class="ph"><img src="/assets/products/chondroitin.jpg" alt="Chondroitin Sulfate Sodium"/></div>
+        <div class="in">
+          <h3>Chondroitin Sulfate Sodium</h3>
+          <p>Bovine source, USP/BP grade — produced under drug-licence manufacturing standards with full traceability from the starting material.</p>
+          <div class="tags"><span class="tag">Bovine</span><span class="tag">USP / BP</span><span class="tag">Drug licence</span><span class="tag">HPLC tested</span></div>
+        </div>
+      </div>
+      <div class="prod">
+        <div class="ph"><img src="/assets/products/collagen.jpg" alt="Collagen"/></div>
+        <div class="in">
+          <h3>Collagen</h3>
+          <p>Fish, bovine and chicken collagen, spray dried in a dedicated cleanroom to a free-flowing, high-purity powder.</p>
+          <div class="tags"><span class="tag">Fish</span><span class="tag">Bovine</span><span class="tag">Chicken</span><span class="tag">Spray dried</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quality"><div class="wrap">
+  <div class="head"><span class="lbl">Why Biomed</span><h2 class="lg">Quality. Expertise. Responsibility.</h2></div>
+  <div class="why">
+    <div>
+      <svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5.2L5.4 17a2.6 2.6 0 0 0 2.3 3.9h8.6a2.6 2.6 0 0 0 2.3-3.9L14 8.2V3"/><path d="M7.4 14.6h9.2"/></svg>
+      <h3>In-house technology</h3>
+      <p>Processes developed from laboratory scale to commercial production, in our own facility.</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 10.2A6 6 0 0 1 6 13.2C6 9.4 12 3 12 3z"/></svg>
+      <h3>High purity</h3>
+      <p>Controlled manufacturing and analytical testing — HPLC, UV, polarimetry — on every batch.</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.4c0 4.3-3.1 8.1-7.5 9.3-4.4-1.2-7.5-5-7.5-9.3V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg>
+      <h3>Quality assured</h3>
+      <p>A well-established Quality Policy supported by a fully equipped Quality Control Laboratory.</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24"><path d="M20 4c0 8.5-4.8 13-9.5 13A5.5 5.5 0 0 1 5 11.5C5 6.8 9.5 4 20 4z"/><path d="M4 20c1.6-4.2 4.4-7.3 8.6-9.4"/></svg>
+      <h3>Sustainable by design</h3>
+      <p>Effluent treated and sent to the CETP at Attivaram; solid waste managed per environmental regulation.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="deep"><div class="wrap two">
+  <img class="ph" src="/assets/infra/spray-dry-2.jpg" alt="Quality control laboratory"/>
+  <div class="body">
+    <span class="lbl">The facility</span>
+    <h2 class="lg">Precision in every process.</h2>
+    <p style="margin-top:20px">A dedicated cleanroom environment supports pharmaceutical, nutraceutical and food supplement manufacturing, with spray drying and ANFD equipment on site.</p>
+    <p>The plant sits 10 km from National Highway 45 near Guduru Junction, and 150 km from Chennai International Airport and Seaport — short, controlled logistics for domestic supply and export.</p>
+    <a href="#contact" class="arrow">Visit the facility <span>→</span></a>
+  </div>
+</div></section>
+
+<section class="tint" id="certs"><div class="wrap">
+  <div class="head center"><span class="lbl">Certifications</span><h2 class="lg">Global standards, on the record.</h2></div>
+  <div class="certs">
+    <div class="cert"><img src="/assets/certs/certificate1.png" alt="GMP"/><h4>GMP Certified</h4><div class="s">Good Manufacturing Practice</div></div>
+    <div class="cert"><img src="/assets/certs/certificate3-fssai.png" alt="FSSAI"/><h4>FSSAI</h4><div class="s">Food Safety &amp; Standards Authority</div></div>
+    <div class="cert"><img src="/assets/certs/certificate2-halal.png" alt="HALAL"/><h4>HALAL</h4><div class="s">Halal India Certified</div></div>
+  </div>
+</div></section>
+
+<section class="cta" id="contact"><div class="wrap">
+  <h2 class="lg">Sourcing bioceutical ingredients?</h2>
+  <p>Tell us the product, grade and quantity you need. Our team will respond with technical data sheets and samples.</p>
+  <div class="acts">
+    <a href="mailto:info@biomedintl.com" class="btn b-white">Contact our team →</a>
+    <a href="tel:+919791154650" class="btn b-ghost">+91 97911 54650</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div><div class="t1">Biomed International</div>
+      <p class="tg" style="color:var(--on-deep-mute)">Bioceutical manufacturing since 2014 — Chondroitin Sulfate Sodium and Collagen for the pharma, nutraceutical, food and cosmetic industries.</p></div>
+    <div><div class="fh">Navigate</div><ul><li><a href="#about">About Us</a></li><li><a href="#products">Products</a></li><li><a href="#chain">Capabilities</a></li><li><a href="#quality">Quality</a></li></ul></div>
+    <div><div class="fh">Products</div><ul><li><a href="#products">Chondroitin Sulfate Sodium</a></li><li><a href="#products">Collagen</a></li></ul></div>
+    <div><div class="fh">Get in touch</div><ul>
+      <li>Mekanuru Village, Guduru Mandal, Tirupati District, Andhra Pradesh – 524410</li>
+      <li><a href="tel:+919791154650">+91 97911 54650</a></li>
+      <li><a href="mailto:info@biomedintl.com">info@biomedintl.com</a></li></ul></div>
+  </div>
+  <div class="fb"><span>© 2026 Biomed International — All rights reserved</span><span>Tirupati District, Andhra Pradesh, India</span></div>
+</div></footer>
+
+<div class="bk">
+  <i>Design options</i>
+  <a href="/preview/a/">A</a>
+  <a href="/preview/b/">B</a>
+  <a href="/preview/c/">C</a>
+  <a href="/preview/d/" class="on">D · Green</a>
+  <a href="/preview/colors/">Colours</a>
+</div>
+
+</body>
+</html>

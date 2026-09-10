@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Design Options — Biomed International</title>
 <link rel="icon" href="/assets/brand/logo.jpg" />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Bodoni+Moda:opsz,wght@6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Bodoni+Moda:opsz,wght@6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#F7F5F0;--ink:#0A0F14;--ink2:#4A5C6B;--mute:#8A939C;--line:rgba(10,15,20,.14);--signal:#00A88E;
   --disp:"Instrument Serif",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",monospace}
@@ -41,15 +41,31 @@ h1{font-family:var(--disp);font-weight:400;font-size:clamp(36px,5vw,60px);line-h
 .opt ul{list-style:none;margin-top:16px}
 .opt li{font-size:13.5px;color:var(--ink2);padding-left:18px;position:relative;margin-bottom:8px}
 .opt li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--signal)}
-.opt .go{margin:24px 26px 0;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--mono);font-size:12.5px;
+.opt .go,.fin .go{margin:24px 26px 0;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--mono);font-size:12.5px;
   letter-spacing:.08em;text-transform:uppercase;padding:14px 20px;background:var(--ink);color:var(--paper);transition:.25s}
-.opt .go:hover{background:var(--signal);color:var(--ink)}
+.opt .go:hover,.fin .go:hover{background:var(--signal);color:var(--ink)}
+.fin .go{background:#2F6B45}
+.fin .go:hover{background:#12301D;color:#fff}
+.featured{display:grid;grid-template-columns:340px 1fr;gap:0;border:1px solid var(--line);background:#fff;margin:48px 0 64px}
+.fsw{background:#12301D;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px 20px}
+.fsw .f1{font-family:"Newsreader",Georgia,serif;font-weight:400;font-size:46px;color:#EFF2EA;line-height:1}
+.fsw .f1 em{color:#9AD3AC}
+.fsw .f2{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8FCBA1}
+.fin{padding:38px 40px}
+.fin .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:12px}
+.fin h2{font-family:var(--disp);font-weight:400;font-size:38px;line-height:1.05;margin-bottom:14px}
+.fin p{font-size:15px;color:var(--ink2);max-width:62ch}
+.fin strong{color:var(--ink);font-weight:600}
+.earlier{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);
+  padding-bottom:14px;border-bottom:1px solid var(--line)}
+.grid{margin-top:0!important}
 .colors{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
   border:1px solid var(--line);padding:38px;margin-bottom:80px;background:#fff}
 .colors h2{font-family:var(--disp);font-weight:400;font-size:30px;line-height:1.1;margin-bottom:12px}
 .colors p{font-size:15px;color:var(--ink2);max-width:64ch}
 .go-wide{margin:0;white-space:nowrap}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.colors{grid-template-columns:1fr;gap:26px;padding:28px}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.colors{grid-template-columns:1fr;gap:26px;padding:28px}
+  .featured{grid-template-columns:1fr}.fsw{padding:34px 20px}.fin{padding:30px 26px}}
 @media(max-width:600px){.wrap{padding:0 20px}.top{padding:48px 0 34px}}
 </style>
 </head>
@@ -58,13 +74,28 @@ h1{font-family:var(--disp);font-weight:400;font-size:clamp(36px,5vw,60px);line-h
 <div class="wrap">
   <div class="top">
     <span class="lbl">Biomed International · Website design</span>
-    <h1>Three directions. Same content, three different personalities.</h1>
-    <p>Open each one and flip between them using the bar at the bottom of the screen. Once you pick a direction, that one gets built out into the full site — every page, with your new copy and photographs.</p>
+    <h1>Option D is the current direction. A, B and C are the earlier explorations.</h1>
+    <p>D is built from your feedback — green, full-width photo hero, and the raw-material-to-finished-ingredient chain as its own section. Open any of them and flip between them using the bar at the bottom of the screen.</p>
     <div class="note">
       Note — the words and photographs here are the current site's, used only as a placeholder so the three can be compared fairly. Copy revamp and new promoter / plant photos will replace all of it.
     </div>
   </div>
 
+  <div class="featured">
+    <div class="fsw">
+      <div class="f1">Aa <em>Bb</em></div>
+      <div class="f2">Newsreader · IBM Plex</div>
+    </div>
+    <div class="fin">
+      <div class="k">Option D — current direction</div>
+      <h2>Green</h2>
+      <p>Full-width photo hero with the headline on the image, and the value chain — raw material → processing → purification → quality control → global supply — as its own section directly under the hero, because that is the actual differentiator.</p>
+      <p style="margin-top:12px"><strong>Still to come:</strong> your real plant and promoter photographs, final wording of the "basic key starting material" claim, and the confirmed industry list.</p>
+      <a class="go" href="/preview/d/" style="margin:22px 0 0">Open option D →</a>
+    </div>
+  </div>
+
+  <div class="earlier">Earlier explorations</div>
   <div class="grid">
     <div class="opt">
       <div class="sw a-sw"><div class="t1">Aa <em>Bb</em></div><div class="t2">Instrument Serif · IBM Plex</div></div>

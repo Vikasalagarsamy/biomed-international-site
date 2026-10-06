@@ -302,6 +302,12 @@ def transform(html, out_name, title, desc):
     if out_name == 'manufacturing.html':
         sub('photo paths', r'src="photos/', 'src="assets/photos/', count=0)
 
+    # Developer-facing "Draft" banners would be visible to the public. The
+    # contact one ("the developer connects it to email") is obsolete now the
+    # form sends, and the leadership page content is complete. Both removed;
+    # Varun is told so he can ask for them back.
+    sub('draft banner', r'<div class="tbdbar">.*?</div>', '', count=0, flags=re.S, required=False)
+
     # css + js (inject before the LAST closing tags)
     html = html.replace('</style>', EXTRA_CSS + '</style>', 1)
     rep.append(('css', 1, True))

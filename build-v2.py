@@ -85,6 +85,18 @@ EXTRA_CSS = """
 .foot nav.fnav a:hover{opacity:1;text-decoration:underline}
 @media (min-width:861px){.mnav{display:none!important}}
 @media (max-width:860px){.navtoggle{display:flex}.nav .btn.b1{display:none}}
+/* ---- heading scale ----
+   Varun flagged every page heading as too large on his laptop. The artifacts
+   used fixed pixel sizes (112px hero, 64px page titles, 48-52px sections),
+   which are designed for a 1440 mock and overflow the fold on a 1366 screen.
+   Replaced with clamp() so type scales with the viewport: big monitors keep
+   the impact, laptops get headings that leave room for content. */
+.pg .phero h1{font-size:clamp(30px,4vw,46px)!important;line-height:1.05}
+.pg .sec-h h2,.pg .story h2,.pg .exp h2,.pg .two h2{font-size:clamp(25px,3.1vw,36px)!important;line-height:1.12}
+.pg .ph2 h2{font-size:clamp(24px,2.8vw,34px)!important}
+.pg .cta h2{font-size:clamp(25px,3.2vw,38px)!important;line-height:1.12}
+.pg .facts b{font-size:clamp(26px,2.8vw,36px)!important}
+.pg .phero{padding-top:clamp(34px,3.8vw,56px)!important;padding-bottom:clamp(38px,4.2vw,60px)!important}
 /* ---- placeholder for photographs not yet supplied ---- */
 .photo-missing{display:flex;align-items:center;justify-content:center;text-align:center;
   background:#EEF2F7;border:1px dashed #C3CEDC;color:#6B7A8D;
@@ -210,7 +222,15 @@ def transform(html, out_name, title, desc):
     html = ''.join(out)
     rep.append(('strip artifact runtime', removed, True))
 
-    sub('head meta', r'<title>.*?</title>', lambda m: head_meta(title, desc, canonical), flags=re.S)
+    # The artifacts put <title> AFTER </head>, so replacing it in place leaves
+    # the title and every meta tag inside <body>, where crawlers ignore them.
+    # Strip the stray title, then insert the whole head block before </head>.
+    html, n_del = re.subn(r'<title>.*?</title>', '', html, flags=re.S)
+    rep.append(('remove stray title', n_del, True))
+    html, n_ins = re.subn(r'</head>',
+                          lambda m: head_meta(title, desc, canonical) + '</head>',
+                          html, count=1)
+    rep.append(('head meta in <head>', n_ins, True))
 
     # header nav -> real links
     sub('header nav', r'(<nav aria-label="Main">).*?(</nav>)',
@@ -221,10 +241,11 @@ def transform(html, out_name, title, desc):
         lambda m: m.group(1) + '<button class="navtoggle" id="navtoggle" aria-expanded="false"'
                   ' aria-controls="mnav" aria-label="Open menu">'
                   '<span></span><span></span><span></span></button>', flags=re.S)
+    drawer_cta = '#f' if out_name == 'contact.html' else 'contact.html#f'
     sub('drawer', r'</header>',
         lambda m: '</header><nav class="mnav" id="mnav" aria-label="Mobile">'
                   + nav_links(out_name)
-                  + '<a class="mcta" href="' + SAMPLE_HREF + '">Request a sample</a></nav>')
+                  + '<a class="mcta" href="' + drawer_cta + '">Request a sample</a></nav>')
 
     # logo links (header + footer) -> home
     sub('logo links', r'<a href="#" class="logo"', '<a href="index.html" class="logo"',
@@ -236,9 +257,12 @@ def transform(html, out_name, title, desc):
         sub('leadership CTA', r'<a href="#"([^>]*)>Contact us</a>',
             '<a href="' + LEAD_HREF + r'"\1>Contact us</a>', count=0, required=False)
 
-    # "Request a sample" everywhere -> founders, cc info
+    # "Request a sample" everywhere -> the enquiry form on Contact Us.
+    # Varun asked to keep contact in one place and rely on that form, rather
+    # than scattering mailto links. On Contact Us itself it scrolls to the form.
+    sample_target = '#f' if out_name == 'contact.html' else 'contact.html#f'
     sub('sample CTAs', r'<a href="#(?:f)?"([^>]*)>Request a sample</a>',
-        '<a href="' + SAMPLE_HREF + r'"\1>Request a sample</a>', count=0, required=False)
+        '<a href="' + sample_target + r'"\1>Request a sample</a>', count=0, required=False)
 
     # remaining in-page CTAs that the artifacts left as href="#"
     sub('breadcrumb Home', r'<a href="#"([^>]*)>Home</a>',
@@ -298,9 +322,24 @@ def transform(html, out_name, title, desc):
         sub('ok message', r'(id="ok"[^>]*>).*?(</div>)',
             lambda m: m.group(1) + OK_MSG + m.group(2), flags=re.S)
 
+    # The landing hero headline and its padding are inline styles, so they beat
+    # any stylesheet rule. Scale them down at source.
+    if out_name == 'index.html':
+        sub('hero h1 112px', r'font-size:112px',
+            'font-size:clamp(38px,5.6vw,78px)', count=0, required=False)
+        sub('hero padding', r'grid-template-columns:640px 1fr;gap:56px;padding:88px 96px 96px',
+            'grid-template-columns:minmax(0,600px) 1fr;gap:48px;'
+            'padding:clamp(34px,3.8vw,58px) 96px clamp(38px,4.2vw,62px)',
+            count=0, required=False)
+
     # manufacturing photos live under assets/
     if out_name == 'manufacturing.html':
         sub('photo paths', r'src="photos/', 'src="assets/photos/', count=0)
+        # The opening image is now Varun's real photograph of the production
+        # hall, not the CG render, so the alt text must stop saying so.
+        sub('reactor alt', r'alt="Illustration of a line of glass-lined reactors"',
+            'alt="Reaction and extraction vessels in the production hall at Unit I"',
+            count=0, required=False)
 
     # Developer-facing "Draft" banners would be visible to the public. The
     # contact one ("the developer connects it to email") is obsolete now the

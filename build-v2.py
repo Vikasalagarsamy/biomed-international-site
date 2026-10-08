@@ -96,7 +96,21 @@ EXTRA_CSS = """
 .pg .ph2 h2{font-size:clamp(24px,2.8vw,34px)!important}
 .pg .cta h2{font-size:clamp(25px,3.2vw,38px)!important;line-height:1.12}
 .pg .facts b{font-size:clamp(26px,2.8vw,36px)!important}
-.pg .phero{padding-top:clamp(34px,3.8vw,56px)!important;padding-bottom:clamp(38px,4.2vw,60px)!important}
+/* Varun circled the empty band between the menu and the first line of text.
+   Top padding cut from 56px to 30px. */
+.pg .phero{padding-top:clamp(22px,2.2vw,30px)!important;padding-bottom:clamp(30px,3.2vw,44px)!important}
+/* "I dont know how to standardize the size when someone opens a page."
+   The inner pages already shared a 56px gap and a 46px heading, but the
+   heading wraps to 1, 2 or 3 lines depending on the words, so the band was
+   243px deep on Contact and 376px on About Us and every page opened at a
+   different height. A min-height with the existing bottom alignment makes
+   the opening band the same depth on all six, whatever the heading length. */
+   The band was bottom-aligned, so a min-height alone pushed short pages DOWN
+   and recreated the very gap Varun circled. Aligning to the top instead means
+   the heading begins at the same height on every page, which is the thing you
+   actually notice when a page opens. */
+.pg .phero{align-items:start!important;min-height:236px;box-sizing:border-box}
+@media (max-width:860px){.pg .phero{min-height:0!important}}
 /* ---- placeholder for photographs not yet supplied ---- */
 .photo-missing{display:flex;align-items:center;justify-content:center;text-align:center;
   background:#EEF2F7;border:1px dashed #C3CEDC;color:#6B7A8D;
@@ -329,16 +343,19 @@ def transform(html, out_name, title, desc):
             'font-size:clamp(38px,5.6vw,78px)', count=0, required=False)
         sub('hero padding', r'grid-template-columns:640px 1fr;gap:56px;padding:88px 96px 96px',
             'grid-template-columns:minmax(0,600px) 1fr;gap:48px;'
-            'padding:clamp(34px,3.8vw,58px) 96px clamp(38px,4.2vw,62px)',
+            'padding:clamp(22px,2.2vw,30px) 96px clamp(34px,3.6vw,50px)',
             count=0, required=False)
 
     # manufacturing photos live under assets/
     if out_name == 'manufacturing.html':
         sub('photo paths', r'src="photos/', 'src="assets/photos/', count=0)
-        # The opening image is now Varun's real photograph of the production
-        # hall, not the CG render, so the alt text must stop saying so.
+        # Varun spotted that the real production-hall photo matched the GALLERY
+        # caption ("Reaction and extraction vessels in the production hall"),
+        # not the opening band. The photo moved down to that caption and the
+        # opening band went back to his rendered illustration, which is the
+        # only wide asset available. Alt text says plainly that it is one.
         sub('reactor alt', r'alt="Illustration of a line of glass-lined reactors"',
-            'alt="Reaction and extraction vessels in the production hall at Unit I"',
+            'alt="Illustration of a line of glass-lined reactors"',
             count=0, required=False)
 
     # Developer-facing "Draft" banners would be visible to the public. The

@@ -114,6 +114,23 @@ EXTRA_CSS = """
    actually notice when a page opens. */
 .pg .phero{align-items:start!important;min-height:236px;box-sizing:border-box}
 @media (max-width:860px){.pg .phero{min-height:0!important}}
+/* ---- landing hero type ----
+   Set here, not on the inline style, because the artifact's responsive rules
+   match the literal strings "font-size:112px" and "font-size:28px". Scoped to
+   min-width:861px so their mobile sizes (58px / 21px) still apply untouched. */
+@media (min-width:1240px){
+  .pg h1[style*="font-size:112px"]{font-size:clamp(32px,4.1vw,56px)!important}
+  .pg p[style*="font-size:28px"]{font-size:clamp(19px,1.6vw,23px)!important}
+}
+@media (min-width:861px) and (max-width:1239px){
+  .pg h1[style*="font-size:112px"]{font-size:clamp(34px,4.8vw,52px)!important}
+  .pg p[style*="font-size:28px"]{font-size:clamp(19px,2vw,22px)!important}
+}
+/* "Engineered." is the longest word and at 58px it cleared a 360px screen by
+   only 6px. Narrow phones get a little room back; 401px and up keep 58px. */
+@media (max-width:400px){
+  .pg h1[style*="font-size:112px"]{font-size:clamp(38px,13.5vw,52px)!important}
+}
 /* ---- placeholder for photographs not yet supplied ---- */
 .photo-missing{display:flex;align-items:center;justify-content:center;text-align:center;
   background:#EEF2F7;border:1px dashed #C3CEDC;color:#6B7A8D;
@@ -339,26 +356,28 @@ def transform(html, out_name, title, desc):
         sub('ok message', r'(id="ok"[^>]*>).*?(</div>)',
             lambda m: m.group(1) + OK_MSG + m.group(2), flags=re.S)
 
-    # The landing hero headline and its padding are inline styles, so they beat
-    # any stylesheet rule. Scale them down at source.
     if out_name == 'index.html':
-        sub('hero h1 112px', r'font-size:112px',
-            'font-size:clamp(32px,4.1vw,56px)', count=0, required=False)
+        # NEVER rewrite the inline font-size or grid-template-columns values on
+        # this page. The artifact's whole responsive layer is attribute
+        # selectors matching those exact strings:
+        #   [style*="grid-template-columns:640px"]{grid-template-columns:1fr!important}
+        #   [style*="font-size:112px"]{font-size:58px!important}
+        #   [style*="font-size:28px"]{font-size:21px!important}
+        # Editing the inline value silently deletes the matching mobile rule.
+        # That is exactly what broke the hero on Varun's phone: the grid stopped
+        # collapsing to one column and the headline ran off the right edge.
+        # Desktop sizes are set in EXTRA_CSS instead, scoped with min-width so
+        # the artifact's own tablet and mobile rules still win underneath.
+        #
+        # Padding and the column gap are safe: no selector keys on them, and
+        # the mobile rules override padding with !important anyway.
         sub('hero padding', r'grid-template-columns:640px 1fr;gap:56px;padding:88px 96px 96px',
-            'grid-template-columns:minmax(0,600px) 1fr;gap:48px;'
+            'grid-template-columns:640px 1fr;gap:48px;'
             'padding:clamp(22px,2.2vw,30px) 96px clamp(26px,2.6vw,38px)',
             count=0, required=False)
-        # Tighten the stack inside the hero column: the four 26px gaps alone
-        # were pushing the buttons 104px down the page.
         sub('hero stack gap', r'display:flex;flex-direction:column;gap:26px',
             'display:flex;flex-direction:column;gap:16px', count=0, required=False)
-        sub('hero subhead', r"font-family:'Archivo', 'Segoe UI', sans-serif;font-size:28px",
-            "font-family:'Archivo', 'Segoe UI', sans-serif;font-size:clamp(19px,1.6vw,23px)",
-            count=0, required=False)
-        # The intro was capped at 56ch inside a 600px column, so it wrapped to
-        # 8 lines while leaving the column short. Letting it use the full
-        # column drops it to 7 and buys ~29px, which is the difference between
-        # the buttons clearing the fold and not on a laptop with a bookmarks bar.
+        # Safe: the selector keys on "font-size:17.5px", which is preserved.
         sub('hero intro measure', r'font-size:17\.5px;line-height:1\.65;color:#4A5A70;max-width:56ch',
             'font-size:17.5px;line-height:1.65;color:#4A5A70;max-width:60ch',
             count=0, required=False)

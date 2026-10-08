@@ -25,11 +25,15 @@
    used fixed pixel sizes (112px hero, 64px page titles, 48-52px sections),
    which are designed for a 1440 mock and overflow the fold on a 1366 screen.
    Replaced with clamp() so type scales with the viewport: big monitors keep
-   the impact, laptops get headings that leave room for content. */
-.pg .phero h1{font-size:clamp(30px,4vw,46px)!important;line-height:1.05}
-.pg .sec-h h2,.pg .story h2,.pg .exp h2,.pg .two h2{font-size:clamp(25px,3.1vw,36px)!important;line-height:1.12}
-.pg .ph2 h2{font-size:clamp(24px,2.8vw,34px)!important}
-.pg .cta h2{font-size:clamp(25px,3.2vw,38px)!important;line-height:1.12}
+   the impact, laptops get headings that leave room for content.
+   Round 3: Varun asked whether to go smaller again, after seeing the hero
+   still overflow on his laptop. Measured first: on every realistic laptop
+   viewport (1280x650 through 1570x700) the hero's buttons sat 18-86px below
+   the fold. So yes. Stepped down once more. */
+.pg .phero h1{font-size:clamp(27px,3.2vw,40px)!important;line-height:1.06}
+.pg .sec-h h2,.pg .story h2,.pg .exp h2,.pg .two h2{font-size:clamp(23px,2.7vw,32px)!important;line-height:1.14}
+.pg .ph2 h2{font-size:clamp(22px,2.5vw,30px)!important}
+.pg .cta h2{font-size:clamp(23px,2.8vw,34px)!important;line-height:1.14}
 .pg .facts b{font-size:clamp(26px,2.8vw,36px)!important}
 /* Varun circled the empty band between the menu and the first line of text.
    Top padding cut from 56px to 30px. */
@@ -38,8 +42,7 @@
    The inner pages already shared a 56px gap and a 46px heading, but the
    heading wraps to 1, 2 or 3 lines depending on the words, so the band was
    243px deep on Contact and 376px on About Us and every page opened at a
-   different height. A min-height with the existing bottom alignment makes
-   the opening band the same depth on all six, whatever the heading length. */
+   different height.
    The band was bottom-aligned, so a min-height alone pushed short pages DOWN
    and recreated the very gap Varun circled. Aligning to the top instead means
    the heading begins at the same height on every page, which is the thing you

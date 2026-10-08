@@ -90,11 +90,15 @@ EXTRA_CSS = """
    used fixed pixel sizes (112px hero, 64px page titles, 48-52px sections),
    which are designed for a 1440 mock and overflow the fold on a 1366 screen.
    Replaced with clamp() so type scales with the viewport: big monitors keep
-   the impact, laptops get headings that leave room for content. */
-.pg .phero h1{font-size:clamp(30px,4vw,46px)!important;line-height:1.05}
-.pg .sec-h h2,.pg .story h2,.pg .exp h2,.pg .two h2{font-size:clamp(25px,3.1vw,36px)!important;line-height:1.12}
-.pg .ph2 h2{font-size:clamp(24px,2.8vw,34px)!important}
-.pg .cta h2{font-size:clamp(25px,3.2vw,38px)!important;line-height:1.12}
+   the impact, laptops get headings that leave room for content.
+   Round 3: Varun asked whether to go smaller again, after seeing the hero
+   still overflow on his laptop. Measured first: on every realistic laptop
+   viewport (1280x650 through 1570x700) the hero's buttons sat 18-86px below
+   the fold. So yes. Stepped down once more. */
+.pg .phero h1{font-size:clamp(27px,3.2vw,40px)!important;line-height:1.06}
+.pg .sec-h h2,.pg .story h2,.pg .exp h2,.pg .two h2{font-size:clamp(23px,2.7vw,32px)!important;line-height:1.14}
+.pg .ph2 h2{font-size:clamp(22px,2.5vw,30px)!important}
+.pg .cta h2{font-size:clamp(23px,2.8vw,34px)!important;line-height:1.14}
 .pg .facts b{font-size:clamp(26px,2.8vw,36px)!important}
 /* Varun circled the empty band between the menu and the first line of text.
    Top padding cut from 56px to 30px. */
@@ -103,8 +107,7 @@ EXTRA_CSS = """
    The inner pages already shared a 56px gap and a 46px heading, but the
    heading wraps to 1, 2 or 3 lines depending on the words, so the band was
    243px deep on Contact and 376px on About Us and every page opened at a
-   different height. A min-height with the existing bottom alignment makes
-   the opening band the same depth on all six, whatever the heading length. */
+   different height.
    The band was bottom-aligned, so a min-height alone pushed short pages DOWN
    and recreated the very gap Varun circled. Aligning to the top instead means
    the heading begins at the same height on every page, which is the thing you
@@ -340,10 +343,24 @@ def transform(html, out_name, title, desc):
     # any stylesheet rule. Scale them down at source.
     if out_name == 'index.html':
         sub('hero h1 112px', r'font-size:112px',
-            'font-size:clamp(38px,5.6vw,78px)', count=0, required=False)
+            'font-size:clamp(32px,4.1vw,56px)', count=0, required=False)
         sub('hero padding', r'grid-template-columns:640px 1fr;gap:56px;padding:88px 96px 96px',
             'grid-template-columns:minmax(0,600px) 1fr;gap:48px;'
-            'padding:clamp(22px,2.2vw,30px) 96px clamp(34px,3.6vw,50px)',
+            'padding:clamp(22px,2.2vw,30px) 96px clamp(26px,2.6vw,38px)',
+            count=0, required=False)
+        # Tighten the stack inside the hero column: the four 26px gaps alone
+        # were pushing the buttons 104px down the page.
+        sub('hero stack gap', r'display:flex;flex-direction:column;gap:26px',
+            'display:flex;flex-direction:column;gap:16px', count=0, required=False)
+        sub('hero subhead', r"font-family:'Archivo', 'Segoe UI', sans-serif;font-size:28px",
+            "font-family:'Archivo', 'Segoe UI', sans-serif;font-size:clamp(19px,1.6vw,23px)",
+            count=0, required=False)
+        # The intro was capped at 56ch inside a 600px column, so it wrapped to
+        # 8 lines while leaving the column short. Letting it use the full
+        # column drops it to 7 and buys ~29px, which is the difference between
+        # the buttons clearing the fold and not on a laptop with a bookmarks bar.
+        sub('hero intro measure', r'font-size:17\.5px;line-height:1\.65;color:#4A5A70;max-width:56ch',
+            'font-size:17.5px;line-height:1.65;color:#4A5A70;max-width:60ch',
             count=0, required=False)
 
     # manufacturing photos live under assets/

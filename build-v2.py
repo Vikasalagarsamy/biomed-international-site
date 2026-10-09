@@ -21,7 +21,7 @@ import os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC  = os.path.join(HERE, '_review', 'v2')
-SITE = 'https://biomed-international.onrender.com'
+SITE = 'https://biomedintl.com'
 
 TO_FOUNDERS = 'pratap@biomedintl.com,sagar@biomedintl.com'
 CC_INFO     = 'info@biomedintl.com'

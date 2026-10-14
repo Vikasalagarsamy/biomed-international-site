@@ -413,8 +413,13 @@ def transform(html, out_name, title, desc):
         # not the opening band. The photo moved down to that caption and the
         # opening band went back to his rendered illustration, which is the
         # only wide asset available. Alt text says plainly that it is one.
+        # The band image is now a photorealistic render rather than the earlier
+        # obvious illustration, so "Illustration of..." no longer describes it.
+        # Kept deliberately descriptive and non-claiming: it says what is
+        # depicted without asserting that it is a photograph of Biomed's plant,
+        # because it is not. Real plant photographs are with the gallery below.
         sub('reactor alt', r'alt="Illustration of a line of glass-lined reactors"',
-            'alt="Illustration of a line of glass-lined reactors"',
+            'alt="Glass-lined reactors in a manufacturing hall"',
             count=0, required=False)
 
     # Developer-facing "Draft" banners would be visible to the public. The

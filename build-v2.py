@@ -377,6 +377,29 @@ def transform(html, out_name, title, desc):
             count=0, required=False)
         sub('hero stack gap', r'display:flex;flex-direction:column;gap:26px',
             'display:flex;flex-direction:column;gap:16px', count=0, required=False)
+        # Hero image swap, requested by Varun on behalf of Pratap Reddy.
+        # The original was a hexagonal carbon lattice, a graphene/nanotube
+        # motif, which is materials science rather than biochemistry and had
+        # nothing to do with any of the four products. Replaced with the
+        # ball-and-stick organic molecule he supplied.
+        #
+        # Also moved off a base64 data URI onto a linked file. The old blob was
+        # ~90 KB of the homepage's weight, re-downloaded on every page view
+        # because a data URI cannot be cached separately.
+        hero_blob = None
+        for mm in re.finditer(r'data:image/jpeg;base64,[A-Za-z0-9+/=]{200,}', html):
+            if hero_blob is None or len(mm.group(0)) > len(hero_blob):
+                hero_blob = mm.group(0)
+        if hero_blob:
+            html = html.replace(hero_blob, 'assets/hero-molecule.jpg', 1)
+            rep.append(('hero -> linked file', 1, True))
+        else:
+            rep.append(('hero -> linked file', 0, True))
+        sub('hero alt text',
+            r'aria-label="3D render of a twisting ribbon of molecular rings"',
+            'aria-label="Three-dimensional ball-and-stick illustration of an organic molecule"',
+            count=0, required=False)
+
         # Safe: the selector keys on "font-size:17.5px", which is preserved.
         sub('hero intro measure', r'font-size:17\.5px;line-height:1\.65;color:#4A5A70;max-width:56ch',
             'font-size:17.5px;line-height:1.65;color:#4A5A70;max-width:60ch',
